@@ -34,8 +34,11 @@ export default function ButtonFieldView({
         e.preventDefault();
         e.stopPropagation();
 
+        console.log("button clicked!")
+        console.log(disabledBtn)
         setDisabledBtn(true);
         onSubmit();
+        console.log("-------")
     }
 
     return (

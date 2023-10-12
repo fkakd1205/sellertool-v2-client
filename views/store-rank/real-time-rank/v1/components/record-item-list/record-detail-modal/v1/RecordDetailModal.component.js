@@ -115,33 +115,34 @@ export function RecordDetailModalComponent({
     }
 
     const handleChangeNRankRecordStatusToPending = async () => {
-        try {
-            if(rankSearchInfo.allowed_search_count <= rankSearchInfo.searched_count) {
-                throw new Error("금일 요청 가능한 횟수를 초과하였습니다.");
-            }
-        } catch (err) {
-            customToast.error(err?.message, {
-                ...defaultOptions,
-                toastId: err?.message
-            });
-            return;
-        }
+        console.log("submit!")
+        // try {
+        //     if(rankSearchInfo.allowed_search_count <= rankSearchInfo.searched_count) {
+        //         throw new Error("금일 요청 가능한 횟수를 초과하였습니다.");
+        //     }
+        // } catch (err) {
+        //     customToast.error(err?.message, {
+        //         ...defaultOptions,
+        //         toastId: err?.message
+        //     });
+        //     return;
+        // }
 
-        customBackdropControl.showBackdrop();
-        let recordId = record.id;
-        await onReqChangeNRankRecordStatusToPending({
-            headers: { wsId: wsId },
-            params: { id: recordId },
-            body: { record_info_id: createRecordInfoId }
-        }, {
-            success: () => {
-                let recordIds = [...currentPendingRecordIds].concat(recordId);
-                onSetCurrentPendingRecordIds(recordIds);
-                handleCreateNRankRecordDetail();
-                onSearchSubscriptionPlanSearchInfo();
-            }
-        })
-        customBackdropControl.hideBackdrop();
+        // customBackdropControl.showBackdrop();
+        // let recordId = record.id;
+        // await onReqChangeNRankRecordStatusToPending({
+        //     headers: { wsId: wsId },
+        //     params: { id: recordId },
+        //     body: { record_info_id: createRecordInfoId }
+        // }, {
+        //     success: () => {
+        //         let recordIds = [...currentPendingRecordIds].concat(recordId);
+        //         onSetCurrentPendingRecordIds(recordIds);
+        //         handleCreateNRankRecordDetail();
+        //         onSearchSubscriptionPlanSearchInfo();
+        //     }
+        // })
+        // customBackdropControl.hideBackdrop();
     }
 
     const handleCreateNRankRecordDetail = async () => {
